@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    body {
+            height: 100vh;
+            justify-content: center;
+            text-align: center;
+            display: flex;
+        }
+        
+        #container {
+            margin: 230px;
+            height: 600px;
+            width: 600px;
+            border-radius: 20px;
+            background-color: mediumturquoise;
+            box-shadow: 6px 10px 30px orange;
+        }
+        
+        #padd {
+            padding: 20px;
+        }
+        
+        .cord {
+            font-size: 30px;
+        }
+        
+        .score {
+            margin-top: -25px;
+            padding-right: 0px;
+            margin-left: 80%;
+        }
+        
+        #mark {
+            padding-right: 40px;
+            text-align: right;
+            font-size: 45px;
+        }
+        
+        .jumple {
+            justify-content: center;
+            display: flex;
+            font-size: 30px;
+            text-transform: uppercase;
+        }
+        
+        .input {
+            margin: 30px;
+            margin-left: 60px;
+            width: 75%;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .inpc {
+            border-radius: 5px;
+            height: 35px;
+            outline: none;
+            box-shadow: 5px 5px 5px grey;
+        }
+        
+        #btn {
+            background-color: #bb33ff;
+            margin-top: 20px;
+            padding-top: 25px;
+            padding-bottom: 20px;
+            font-size: 16px;
+            outline: none;
+            cursor: pointer;
+            border: none;
+            box-shadow: 5px 5px 5px grey;
+        }
+        
+        .line {
+            color: rgb(0, 255, 247);
+            margin-top: 50px;
+            padding-top: 0px;
+            padding-bottom: 0px;
+            height: 5px;
+            background-color: rgb(0, 255, 247);
+            border: none;
+        }
+        
+        .circle {
+            margin-top: 400px;
+            margin-right: 70px;
+            border: 5px solid rgb(0, 255, 247);
+            height: 300px;
+            width: 300px;
+            border-radius: 50%;
+            box-shadow: 2px 4px 5px grey;
+        }
+        
+        .got {
+            margin-left: 20px;
+            margin-top: 40px;
+            margin-bottom: 5px;
+            font-size: 50px;
+            padding: 0px;
+        }
+        
+        .total {
+            margin-top: 10px;
+            margin-left: 20px;
+            padding-top: 10px;
+            font-size: 50px;
+        }
+        
+        #aga {
+            padding: 10px;
+            margin-top: 20px;
+            width: 30%;
+            margin-left: 145px;
+            font-size: 15px;
+            cursor: pointer;
+            border: none;
+            background-color: rgb(0, 204, 255)
+        }
+    }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+
+        <div id="padd">
+            <h2>Guess the word!!!</h2>
+            <div class="score">
+                <p class="cord">score</p>
+                <p id="mark"> 0</p>
+
+            </div>
+
+            <div class="jumple">
+                <p id="jumpwor"> twist</p>
+            </div>
+
+
+            <div class="input">
+                <input type="text" class="inpc" id="inp" placeholder="your answer" />
+                <button onclick=" check()" id="btn">submit</button>
+                <button onclick="again()" id="aga">Wanna play again??</button>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+    <div class="circle">
+        <p class="got" id="get">0</p>
+        <hr class="line">
+        <p class="total" id="tot">0</p>
+
+    </div>
+
+
+    <script>
+        let words = [
+
+            {
+                jumpled: "repdevol",
+                correct: "developer"
+            },
+
+            {
+                jumpled: "sltakfulc",
+                correct: "fullstack"
+            },
+
+            {
+                jumpled: "bataades",
+                correct: "database"
+            }, {
+                jumpled: "rebrow",
+                correct: "browser"
+
+            }, {
+                jumpled: "leconso",
+                correct: "console"
+
+            }, {
+                jumpled: "ptcris",
+                correct: "script"
+            },
+
+            {
+                jumpled: "docgni",
+                correct: "coding"
+            },
+
+            {
+                jumpled: "xliun",
+                correct: "linux"
+            },
+
+            {
+
+                correct: "google",
+                jumpled: "ogogel"
+
+            },
+
+            {
+                jumpled: "ikgahcn",
+                correct: "hacking"
+            }
+
+
+
+        ]
+        let count = 0;
+        let score = 0;
+
+
+        function disp() {
+
+            document.querySelector("#jumpwor").innerText =
+                words[count].jumpled;
+            document.querySelector('#mark').innerText = score;
+            document.querySelector('#get').innerText = score;
+            document.querySelector('#tot').innerText = count;
+
+        }
+
+        disp();
+
+        function check() {
+
+            let answer = document.querySelector("#inp").value;
+
+            if (answer.toLowerCase() === words[count].correct.toLowerCase()) {
+
+                score++;
+
+            }
+
+
+            if (count === words.length - 1) {
+                document.querySelector('#get').innerText = score;
+                document.querySelector('#tot').innerText = words.length;
+
+                document.querySelector('#inp').value = "";
+
+            } else {
+                count++;
+                disp();
+                document.querySelector('#inp').value = "";
+
+            }
+
+
+        }
+
+        function again() {
+            location.reload();
+        }
+    </script>
+</body>
+
+</html>
